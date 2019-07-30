@@ -1,0 +1,88 @@
+
+ 264p - not function the picture
+
+ 2611p - add to models campaing&positions
+   -hava provblem in main not function na layout main
+
+ 269a - funtion logout, put ../location file call the imagge
+ -campaign ok save automatice user created_by,datepicek
+
+ <!-- <?php
+$script = <<< JS
+//here you right all your javascript stuff
+//alert(data.city); to test the data
+$('#enrolstud').change(function(){
+    var enrolstudId = $(this).val();
+      
+    $.get(enrolstud/get-student_id-firstname-lastname',{enrolstudId : enrolstudId}, function(data){
+     var data = $.parseJSON(data); 
+        
+        $('#candidates-student_id').attr('value',data.student_id);
+        $('#candidates-firstname').attr('value',data.firstname);
+        $('#candidates-lastname').attr('value',data.lastname);
+  });
+});
+
+JS;
+$this->registerJs($script);
+?>
+   -->
+    public function actionGetStudent_idFirstnameLastname($enrolstudId)
+    {
+        //find the zip code from the locations table v24
+        $enrolstud=Enrolstud::findOne($enrolstudId);
+         echo Json::encode($enrolstud);
+    }
+    
+ 617 edit idet in main layout base variable
+
+
+ 21/6 change db adn enrolsrud field yearterm, campaign add election term
+ -in canpaing not function the date
+ 25/6 analys in the part of candidates
+ 26/6 edit na database record
+ 27/6  ediit database in subquery
+
+ *sample subquery
+SELECT id FROM enrolstud where id not in (SELECT enrolstud_id FROM `candidates` where campaign_id = 1) and year_term ='20191'
+
+4/5 - transfer js in web folder
+
+4/7 analysts in candidate on change
+  -anytsts some function in subqury
+ 
+ 5/7 changes code in student controler and candidate js
+ *code f no record found value
+  SELECT student_id FROM students where student_id not in (SELECT student_id FROM `candidates` where campaign_id = 1)
+
+*code if have found some value
+  SELECT * FROM `students` as s
+INNER JOIN `candidates` as c ON s.student_id = c.student_id
+INNER JOIN `campaign` as cc ON cc.id = c.campaign_id
+
+7/10 new sqlquery
+SELECT student_id FROM students where student_id not in (SELECT student_id FROM `candidates` where campaign_id = 1)
+
+
+        //SELECT student_id FROM student where student_id not in (SELECT student_id FROM `candidates` where campaign_id = $data['campaign_id'])
+
+          //  $sql = 'SELECT * FROM customer WHERE status=:status';
+           // $customers = Customer::findBySql($sql, [':status' => Customer::STATUS_INACTIVE])->all();
+       // }
+
+7/11 na usab ang code sa candidate
+
+7/15 overide class 
+<?php
+    $form = ActiveForm::begin(
+        [
+            'action' => '/login',
+            'options' => [
+                'class' => 'userform'
+             ]
+        ]
+    );
+    // ... add all your inputs here for example:
+    echo $form->field($model, 'login');
+    ActiveForm::end();
+?>

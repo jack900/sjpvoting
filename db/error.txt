@@ -1,0 +1,10 @@
+test js consol
+
+ts thtmn alert echo
+
+
+
+http://yiiprogramming.blogspot.com/2018/05/yii2-generate-random-string.
+
+refs in checkbox
+https://stackoverflow.com/questions/37473895/how-i-can-process-a-checkbox-column-from-yii2-gridview/37475042

@@ -1,0 +1,17 @@
+
+*var_dump data 
+    // echo "<pre>";
+    // var_dump($data);
+    // exit;
+
+  sa preview og respose ma kitaan
+  and result sa controler to ajax js
+
+  sa network and respose makitan ang value nga gi vardump
+  sa controler
+
+  findOne target primanarykey
+
+  i var_dump ang data data bago ma save
+
+  use transaction in specialy is database

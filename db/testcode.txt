@@ -1,0 +1,167 @@
+Yii2 session flash message
+Write below code in your controller
+
+Yii::$app->session->setFlash('success', "This is a flash message");
+Write below code in your view
+
+Yii::$app->session->getFlash('success');
+
+//generate code
+<?php
+$length = rand(1,3);
+$chars = array_merge(range(0,9));
+shuffle($chars);
+$password = implode(array_slice($chars, 0,$length));
+echo $password;
+?>
+
+$string = Yii::$app->security->generateRandomString(12);
+        
+        print_r($string);
+//result
+JCt-5GeUlR8q
+
+*****
+Single File Upload
+
+<?= $form->field($model, 'uploadFile')->fileInput() ?>
+	
+MultiFile Upload
+
+<?php echo $form->field($model, 'uploadFile[]')
+                    ->fileInput(['multiple'=>'multiple']); ?>
+In the components's section of your common/main-local.php
+
+**** send code in email
+'mail' => [
+        'class' => 'yii\swiftmailer\Mailer',
+        'viewPath' => '@backend/mail',
+        'useFileTransport' => false,//set this property to false to send mails to real email addresses
+        //comment the following array to send mail using php's mail function
+        'transport' => [
+            'class' => 'Swift_SmtpTransport',
+            'host' => 'smtp.gmail.com',
+            'username' => 'username@gmail.com',
+            'password' => 'password',
+            'port' => '587',
+            'encryption' => 'tls',
+            ],
+    ],
+In your Controller
+
+    \Yii::$app->mail->compose('your_view', ['params' => $params])
+    ->setFrom([\Yii::$app->params['supportEmail'] => 'Test Mail'])
+    ->setTo('to_email@xx.com')
+    ->setSubject('This is a test mail ' )
+    ->send();
+
+
+    *** stackflow object array
+    $("#merge_button").click(function(event){
+    event.preventDefault();
+    var searchIDs = $("#find-table input:checkbox:checked").map(function(){
+      return $(this).val();
+    }).get(); // <----
+    console.log(searchIDs);
+});
+
+****checkbox
+<form id="myform" action="test.php" method="post">
+Then
+
+function getChcked(){
+    var form = document.getElementById('myform');
+    var chks = form.querySelectorAll('input[type="checkbox"]');
+    var checked = [];
+    for(var i = 0; i < chks.length; i++){
+        if(chks[i].checked){
+            checked.push(chks[i].value)
+        }
+    }
+    return checked;
+}
+
+** ok jquerry code in checkbox
+
+    $('table > tbody > tr > td:nth-child(2) > input[type=checkbox]').click(function() 
+  {  
+   
+          var form = document.getElementById('w0');
+         var chks = form.querySelectorAll('input[type="checkbox"]');
+         var checked = [];
+         for(var i = 0; i < chks.length; i++){
+        if(chks[i].checked){
+            checked.push(chks[i].value)
+        }
+    }
+
+    console.log(checked);
+   //console.log($(this).val()); //orig
+
+
+       jQuery.ajax({
+          type: 'POST',
+          url: base_url+'/admin/students/sendcode',  
+          data: { student_id: checked}, 
+          dataType: 'json',
+          success: function(data) {
+            
+            //console.log('success');
+           // console.log(data.status);
+            //console.log(data.studid);
+
+            
+          }
+        });
+
+*** redirect login
+public function actionLogin()
+{
+    $model=new LoginForm;
+    // if it is ajax validation request
+    if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+    {
+        echo CActiveForm::validate($model);
+        Yii::app()->end();
+    }
+
+    // collect user input data
+    https://stackoverflow.com/questions/19709924/redirect-to-module-after-login-yii
+    if(isset($_POST['LoginForm']))
+    {
+        $model->attributes=$_POST['LoginForm'];
+        // validate user input and redirect to the previous page if valid
+        if($model->validate() && $model->login()){
+            switch(Yii::app()->user->role){
+                case 3:
+                    $this->redirect(Yii::app()->controller->module->tradesman);
+                    break;
+                default:
+                    $this->redirect(Yii::app()->user->returnUrl);
+            }
+        }
+    }
+    // display the login form
+    $this->render('login',array('model'=>$model));
+}
+ codes in import in studentcontroler
+    // echo "<pre>";
+            // var_dump($importstud);
+            //    //   print_r($importstud->errors);
+            // exit;//orig
+
+             // $studcode->username = $student->student_id;
+             // $studcode->password=Yii::$app->security->generateRandomString(12);
+             // //$studcode->generateAuthKey();
+             // $studcode->generateAuthKey();
+             // $studcode->generatePasswordResetToken();
+             // $studcode->save(); 
+
+           
+           //search code
+          // $string = Yii::$app->security->generateRandomString(12);
+            // $length = rand(1,3);
+            // $chars = array_merge(range(0,9));
+            // shuffle($chars);
+            // $password = implode(array_slice($chars, 0,$length));
+            // echo $password;

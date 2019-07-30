@@ -1,0 +1,22 @@
+7/11
+delete na not enclude tabale
+
+trim not count the space
+SELECT length(TRIM(' SQL Tutorial ')) AS TrimmedString
+
+7/12
+add new tables pro,dept,course
+
+7/15
+new db add import_student table
+
+7/16 new db name csjpvoting_b
+
+font awsome icon free
+
+explore model in yii guide
+
+7/17 note
+
+use session flash for massage
+7/18 user related to student
