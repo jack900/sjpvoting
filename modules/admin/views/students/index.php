@@ -50,9 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
               'class' => 'yii\grid\CheckboxColumn',
               'checkboxOptions' => function($model, $key, $index, $widget) {
 
-                     return ["value" => $model->student_id]; //orig
-                   // return ["value" => $model->student_id,'class' => 'checkbox-row', 'id' => 'checkbox'];
-
+                    // return ["value" => $model->student_id]; //orig
+                    return ["value" => $model->student_id,'class' => 'checkbox-row'];
                 },
             ],
 

@@ -48,6 +48,9 @@ class StudentsController extends Controller
      */
     public function actionIndex()
     {
+
+
+
         $this->layout = "main";
         $searchModel = new StudentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -219,8 +222,9 @@ class StudentsController extends Controller
     public function actionSendcode()
     {
 
-        $studcode = new Students();
+      //  $studname = new Students();
         $usercode = new Users();
+
 
        if (Yii::$app->request->isAjax)  // ajax form
         //if ($studcode->load(Yii::$app->request->post()) && $usercode->load(Yii::$app->request->post()))  //para form
@@ -232,6 +236,8 @@ class StudentsController extends Controller
 
              for($x = 0; $x < $arrlength; $x++) {
 
+              $usercode = new Users();
+
              $passcode=Yii::$app->security->generateRandomString(6);
 
              $usercode->username=$student[$x];
@@ -241,31 +247,28 @@ class StudentsController extends Controller
               
              $usercode->save(); 
 
-
-
-         //  $studup=Students::find()->where(['student_id'=>$student])->one();
-
-              $studname=Students::find()->where(['student_id'=>$student[$x]])->one();
-              $studname->user_id=$usercode->id;
-
-              $studname->save(); 
-
-            //  $enrol->save(); 
              
+              $studname = new Students();
+              $studname=Students::find()->where(['student_id'=>$student[$x]])->one();
+               $studname->user_id=$usercode->id;
 
+               $studname->save(); 
 
-            //  echo "<pre>";
-            // var_dump($usercode);
-            //  exit();
+                 // echo "<pre>";
+                 // var_dump($studname);
+                 // exit();
+            Yii::$app->mailer->compose()
+
+           ->setTo([$studname->email]) 
            
-           /// echo $student[$x];
-             //echo "<br>";
-           //  var_dump($student);
-            // exit();
+            ->setFrom(['rexjun609@gmail.com' => 'Alerts'])
+            ->setReplyTo('noreply@example.com')
+            ->setSubject('Hey your passcode to Vote')
+            
+            ->setTextBody('Username:'.$studname->student_id .'<br>Your Password:'.$passcode)
+            ->send();
 
-            }
-
-        
+            } 
      }
    
         return json_encode([
@@ -326,11 +329,10 @@ class StudentsController extends Controller
 
 
             $can = Candidates::find()->asArray()->all();
-           //      echo '<pre>';
            // var_dump($can);
            // echo '</pre>';
            // exit;
-           // SELECT student_id FROM students where student_id not in (SELECT student_id FROM `candidates` where campaign_id = 1)
+          
 
            $subQuery = Candidates::find()->select('student_id')->where(['campaign_id'=> $campaign]);
            $query = Students::find()->where(['not in', 'student_id', $subQuery])->asArray()->all();

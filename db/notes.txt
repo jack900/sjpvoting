@@ -15,3 +15,17 @@
   i var_dump ang data data bago ma save
 
   use transaction in specialy is database
+
+
+
+
+  7/31
+  ang system gi apload to the git resperatory
+
+ i add sa email -- sa imail na naay click here diretso sa imail
+ sa email controler add og view file
+  Yii::$app->mailer->htmlLayout = "layouts/html"; 
+  Yii::$app->mailer->compose('views/email-template', ['nameReceiver' => $nameReceiver, 'contentReceiver' => $contentReceiver]) 
+
+reps
+  https://www.cloudways.com/blog/user-authentication-yii2/

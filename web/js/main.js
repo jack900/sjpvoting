@@ -15,8 +15,10 @@ $(function()
   {  
 
 
-      var form = document.getElementById('w0');
-      var chks = form.querySelectorAll('input[type="checkbox"]');
+     var form = document.getElementById('w0');
+      // var form = document.getElementById('w0-filters');
+      var chks = form.querySelectorAll('.checkbox-row');
+
       var checked = [];
       for(var i = 0; i < chks.length; i++)
       {
@@ -25,6 +27,9 @@ $(function()
         }
       } 
       console.log(checked);
+
+      // #w0 > table > tbody > tr:nth-child(1) > td:nth-child(2) > input[type=checkbox]
+      // #w0 > table > thead > tr:nth-child(1) > th:nth-child(2) > input
 
     jQuery.ajax({
         type: 'POST',

@@ -7,6 +7,9 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'name' => 'SSC VOTING SYSTEM',
+    'name' => '',
+     // 'sscvoting',
     //'catchAll' =>['partylist/index'],use for maintinance
     'modules' =>
      [
@@ -45,10 +48,23 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
+            // send all mails to a file by default. You have to sets
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,  
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.gmail.com',  
+                'username' => 'rexjun609@gmail.com',
+                'password' => 'Junrex213',
+               'port' => '587', //orig
+                //'port' => '993',
+
+                'encryption' => 'tls', 
+               // 'encryption' => 'StartTLS', 
+            ],
+         // 'viewPath' => '@common/mail',
+
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

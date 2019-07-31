@@ -165,3 +165,36 @@ public function actionLogin()
             // shuffle($chars);
             // $password = implode(array_slice($chars, 0,$length));
             // echo $password;
+
+***sample code sa send email
+
+ $user = \common\models\User::find()->select(['id', 'username', 'email'])->where(['id' => 1])->one();
+
+        $mailer = Yii::$app->mailer;
+        $message = $mailer->compose()
+            ->setTo([$user->email => $user->username])      // or just $user->email
+            ->setFrom(['alerts@example.com' => 'Alerts'])
+            ->setReplyTo('noreply@example.com')
+            ->setSubject('Hey -username-, Read This Email')
+            ->setHtmlBody('Dear -username-,<br><br>My HTML message here')
+            ->setTextBody('Dear -username-,\n\nMy Text message here')
+            //->setTemplateId('1234')
+            //->addSection('%section1%', 'This is my section1')
+            //->addHeader('X-Track-UserType', 'admin')
+            //->addHeader('X-Track-UID', Yii::$app->user->id)
+            //->addCategory('tests')
+            //->addCustomArg('test_arg', 'my custom arg')
+            //->setSendAt(time() + (5 * 60))
+            //->setBatchId(Yii::$app->mailer->createBatchId())
+            //->setIpPoolName('7')
+            //->attach(Yii::getAlias('@webroot/files/attachment.pdf'))
+            ->addSubstitution('-username-', $user->username)
+            ->send();
+
+        if ($message === true) {
+            echo 'Success!';
+            echo '<pre>' . print_r($mailer->getRawResponses(), true) . '</pre>';
+        } else {
+            echo 'Error!<br>';
+            echo '<pre>' . print_r($mailer->getErrors(), true) . '</pre>';
+        }
