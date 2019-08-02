@@ -59,4 +59,10 @@ class Campaign extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Users::className(),['id'=>'created_by']);
     }
+
+    public function getCandidates()
+    {
+        return $this->hasMany(Candidates::className(),['campaign_id'=>'id'])->orderBy('position_id asc');
+    }
+
 }

@@ -60,4 +60,26 @@ class Candidates extends \yii\db\ActiveRecord
     {
       return new CandidatesQuery(get_called_class());
     }
+
+    public function getStudent()
+    {
+        return $this->hasOne(Students::className(),['student_id'=>'student_id']);
+    }
+
+    public function getPositions()
+    {
+        return $this->hasMany(Positions::className(), ['id'=>'position_id'])->orderBy(['positions.priority' => SORT_ASC]);
+    }
+
+ //   // public function getPosition()
+ //   //  {
+ //   //      return $this->hasOne(Candidates::className(),['id'=>'campaign']);
+   //}
+
+  
+    // public function getCandidates()
+    // {
+    //     return $this->hasMany(Candidates::className(),['campaign_id'=>'id']);
+    // }
+
 }

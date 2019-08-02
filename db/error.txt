@@ -8,3 +8,32 @@ http://yiiprogramming.blogspot.com/2018/05/yii2-generate-random-string.
 
 refs in checkbox
 https://stackoverflow.com/questions/37473895/how-i-can-process-a-checkbox-column-from-yii2-gridview/37475042
+
+
+
+cutfiles admin/student/index
+   //   date("Y-m-d H:i:s", 1388516401);
+        
+       //   $date=date("2014-01-01 00:00:01");
+       // // $plus = 1+1;
+       //  echo strtotime("2014-01-01 00:00:01")."<hr>";
+
+        //         $currentDate = date("Y-m-d");
+        // $currentTime = date("H:i:s");
+
+        // $currentDate =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+
+        // echo $currentDate;
+
+
+         //echo(strtotime("now") . "<br>");
+        // echo(strtotime("3 October 2005") . "<br>");
+        // echo(strtotime("+5 hours") . "<br>");
+        // echo(strtotime("+1 week") . "<br>");
+        // echo(strtotime("+1 week 3 days 7 hours 5 seconds") . "<br>");
+        // echo(strtotime("next Monday") . "<br>");
+        // echo(strtotime("last Sunday"));
+               // $dates= (strtotime("now"));
+
+       //  var_dump($dates);
+       //  exit();

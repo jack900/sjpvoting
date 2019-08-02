@@ -28,4 +28,26 @@
   Yii::$app->mailer->compose('views/email-template', ['nameReceiver' => $nameReceiver, 'contentReceiver' => $contentReceiver]) 
 
 reps
-  https://www.cloudways.com/blog/user-authentication-yii2/
+  https://www.cloudways.com/blog/user-authentication-yii2
+
+    8/01
+  applay rbac
+in documention have guide in aplay rbac 
+add ./ in git bash is linus type
+$ ./yii migrate --migrationPath=@yii/rbac/migrations
+
+https://www.yiiframework.com/doc/guide/2.0/en/db-active-record
+
+example query
+SELECT users.username, students.firstname, students.lastname from users inner join students on users.id=students.user_id
+
+query to candidates
+
+SELECT * FROM `candidates` WHERE campaign_id = 1
+$candidates = Candidates::find()->where(['id'=>1])->one();
+
+SELECT * FROM `positions` where priority = 1
+
+
+https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder
+https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder

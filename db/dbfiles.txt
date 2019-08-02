@@ -20,3 +20,6 @@ explore model in yii guide
 
 use session flash for massage
 7/18 user related to student
+
+08/1
+delele rbac db old replace new rbac migrate

@@ -14,8 +14,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Users;
 use yii\helpers\Json;
- use yii\helpers\Url;
- use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
  use yii\web\UploadedFile;
 use \PHPExcel;
 use \PHPExel_IOFactory;
@@ -49,41 +49,13 @@ class StudentsController extends Controller
     public function actionIndex()
     {
 
-
-
         $this->layout = "main";
         $searchModel = new StudentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-       //   date("Y-m-d H:i:s", 1388516401);
-        
-       //   $date=date("2014-01-01 00:00:01");
-       // // $plus = 1+1;
-       //  echo strtotime("2014-01-01 00:00:01")."<hr>";
-
-        //         $currentDate = date("Y-m-d");
-        // $currentTime = date("H:i:s");
-
-        // $currentDate =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
-
-        // echo $currentDate;
-
-
-         //echo(strtotime("now") . "<br>");
-        // echo(strtotime("3 October 2005") . "<br>");
-        // echo(strtotime("+5 hours") . "<br>");
-        // echo(strtotime("+1 week") . "<br>");
-        // echo(strtotime("+1 week 3 days 7 hours 5 seconds") . "<br>");
-        // echo(strtotime("next Monday") . "<br>");
-        // echo(strtotime("last Sunday"));
-               // $dates= (strtotime("now"));
-
-       //  var_dump($dates);
-       //  exit();
       $import = new ImportStudent();
       // var_dump($import);
       // exit;
-
 
      $model = new Students();
 
@@ -247,6 +219,10 @@ class StudentsController extends Controller
               
              $usercode->save(); 
 
+             $auth = \Yii::$app->authManager;
+             $studentRole = $auth->getRole('student');
+             $auth->assign($studentRole, $usercode->getId());
+
              
               $studname = new Students();
               $studname=Students::find()->where(['student_id'=>$student[$x]])->one();
@@ -333,7 +309,7 @@ class StudentsController extends Controller
            // echo '</pre>';
            // exit;
           
-
+//SELECT student_id FROM students where student_id not in (SELECT student_id FROM `candidates` where campaign_id = 1)
            $subQuery = Candidates::find()->select('student_id')->where(['campaign_id'=> $campaign]);
            $query = Students::find()->where(['not in', 'student_id', $subQuery])->asArray()->all();
 
